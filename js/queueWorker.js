@@ -1,0 +1,2 @@
+
+let slots = 0;

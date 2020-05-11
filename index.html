@@ -8,8 +8,34 @@
 </head>
 
 <body onload="simulation()">
+    <header>
+        <input type="text" name="lambda" id="lambda" placeholder="Lambda"> 
+        <input type="text" name="mean" id="mean" placeholder="Wartość oczekiwana"> 
+        <input type="text" name="variance" id="variance" placeholder="Wariancja"> 
+        <input type="text" name="queue" id="queue" placeholder="Max. długość kolejki"> 
+    </header>
+    <div id="container">
+        <div class="official" id="A">
+            <p class="name">A: </p>
+            <p class="status">Available</p>
+        </div>
+        <div class="official" id="B">
+            <p class="name">B: </p>
+            <p class="status">Available</p>
+        </div>
+        <div class="official" id="C">
+            <p class="name">C: </p>
+            <p class="status">Available</p>
+        </div>
 
+        <div id="queue">
+            Empty
+        </div>
 
-    <script src="js/task1.js"></script>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+
+    <script src="js/task1.js"></script> 
 </body>
 </html>

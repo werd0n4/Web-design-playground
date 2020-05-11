@@ -12,24 +12,24 @@
         <input type="text" name="lambda" id="lambda" placeholder="Lambda"> 
         <input type="text" name="mean" id="mean" placeholder="Wartość oczekiwana"> 
         <input type="text" name="variance" id="variance" placeholder="Wariancja"> 
-        <input type="text" name="queue" id="queue" placeholder="Max. długość kolejki"> 
+        <input type="text" name="queueSize" id="queueSize" placeholder="Max. długość kolejki"> 
     </header>
     <div id="container">
         <div class="official" id="A">
-            <p class="name">A: </p>
-            <p class="status">Available</p>
+            A: Available
         </div>
         <div class="official" id="B">
-            <p class="name">B: </p>
-            <p class="status">Available</p>
+            B: Available
         </div>
         <div class="official" id="C">
-            <p class="name">C: </p>
-            <p class="status">Available</p>
+            C: Available
         </div>
 
         <div id="queue">
             Empty
+        </div>
+        <div id="rejected">
+            Rejected: 0
         </div>
 
         <button id="start">Start</button>

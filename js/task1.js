@@ -1,9 +1,9 @@
 
 let clientGenerator = undefined;
-let queue = undefined;
+let queueWorker = undefined;
 let officialA = undefined;
-let officialB = undefined;
-let officialC = undefined;
+let queueOutput;
+let rejectedCount = 0;
 
 
 function startClientGenerator(){
@@ -17,35 +17,61 @@ function startClientGenerator(){
                                 });
 
     clientGenerator.onmessage = function(event){
-
+        queueWorker.postMessage({"command": "push", "serviceTime": event.data.serviceTime});    
     };
 }
+
 
 function startQueue(){
     console.log("Start queue");
 
+    queueWorker = new Worker("./js/queueWorker.js");
+
+    queueWorker.postMessage({"command": "init", "rejected": rejectedCount, "queueSize": parseInt(document.getElementById("queueSize").value)});
+
+    queueWorker.onmessage = function(event){
+        if(event.data.type == "pushed"){
+            queueOutput.innerHTML = event.data.value;
+        }
+        if(event.data.type == "rejected"){
+            rejected.innerHTML = "Rejected: " + event.data.value;
+            rejectedCount = event.data.value;
+        }
+        if(event.data.type == "poped"){
+            officialA.postMessage({"command": "get", "serviceTime": event.data.value})
+            document.getElementById("A").innerHTML = "A: " + event.data.value;
+        }
+    };
 }
 
 function startOfficials(){
-    if(typeof(clientGenerator) == "undefined"){
-        officialA = new Worker("./js/officialWorker.js");
-    }
-    if(typeof(clientGenerator) == "undefined"){
-        officialB = new Worker("./js/officialWorker.js");
-    }
-    if(typeof(clientGenerator) == "undefined"){
-        officialC = new Worker("./js/officicalWorker.js");
-    }
+    console.log("Start officials");
 
+    officialA = new Worker("./js/officialWorker.js");
+
+    officialA.onmessage = function(event){
+        if(event.data.command == "get"){
+            queueWorker.postMessage({"command": "pop"});
+        }
+    };
 }
 
-function stopClientGenerator(){
-    console.log("Stop client generator")
+
+function stopAll(){
+    console.log("Stop All")
     clientGenerator.terminate();
     clientGenerator = undefined;
+    queueWorker.terminate();
+    queueWorker = undefined;
+    officialA.terminate();
+    officialA = undefined;
 }
 
 function simulation(){
+    queueOutput = document.getElementById("queue");
+    rejected = document.getElementById("rejected");
+    rejectedNumb = 0;
+
 
     document.getElementById("start").addEventListener("click", function(){
         console.log("Start");
@@ -56,7 +82,7 @@ function simulation(){
 
     document.getElementById("stop").addEventListener("click", function(){
         console.log("Stop");
-        stopClientGenerator();
+        stopAll();
     });
 
 

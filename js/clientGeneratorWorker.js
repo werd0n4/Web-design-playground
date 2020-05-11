@@ -12,9 +12,9 @@ function normal_dist(m, delta_2){
 }
 
 function generateClient(){
-    postMessage({"serviceTime": normal_dist()});
+    postMessage({"serviceTime": (1500+Math.floor(Math.random() * 50))});
     
-    setTimeout(generateClient(), exponential_dist());
+    setTimeout(generateClient, 10);//or "generateClient()"
 }
 
 self.onmessage = function(event){

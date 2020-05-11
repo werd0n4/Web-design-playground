@@ -3,9 +3,9 @@ let slots = 0;
 let rejected = 0;
 let array = []
 
-function pop(){
+function pop(id){
     let poped = array.shift();
-    postMessage({"type": "poped", "value": poped});
+    postMessage({"type": "poped", "value": poped, "id": id});
 }
 
 function push(serviceTime){
@@ -23,6 +23,7 @@ self.onmessage = function(event){
     if(event.data.command == "init"){
         slots = event.data.queueSize;
         rejected = event.data.rejected;
+        array = event.data.saveArray;
         return;
     }
 
@@ -31,7 +32,7 @@ self.onmessage = function(event){
     }
 
     if(event.data.command == "pop"){
-        pop();
+        pop(event.data.id);
     }
 
     if(event.data.command == "getQueue"){

@@ -12,7 +12,7 @@ function normal_dist(m, delta_2){
 }
 
 function generateClient(){
-    postMessage({"serviceTime": (1500+Math.floor(Math.random() * 50))});
+    postMessage({"serviceTime": (3000+Math.floor(Math.random() * 1000))});
     
     setTimeout(generateClient, 10);//or "generateClient()"
 }

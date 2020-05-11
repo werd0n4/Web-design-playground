@@ -86,7 +86,6 @@ function startOfficials(){
     };
 }
 
-
 function stopAll(){
     console.log("Stop All");
     clientGenerator.terminate();
@@ -106,7 +105,6 @@ function simulation(){
     rejected = document.getElementById("rejected");
     rejectedNumb = 0;
 
-
     document.getElementById("start").addEventListener("click", function(){
         console.log("Start");
         startClientGenerator();
@@ -118,6 +116,4 @@ function simulation(){
         console.log("Stop");
         stopAll();
     });
-
-
 }

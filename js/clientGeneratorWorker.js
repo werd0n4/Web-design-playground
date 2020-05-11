@@ -3,6 +3,7 @@ let lambda = 0;
 let mean = 0;
 let variance = 0;
 
+
 function exponential_dist(){
     return 1000;
 }

@@ -3,6 +3,7 @@ let slots = 0;
 let rejected = 0;
 let array = []
 
+
 function pop(id){
     let poped = array.shift();
     postMessage({"type": "poped", "value": poped, "id": id});

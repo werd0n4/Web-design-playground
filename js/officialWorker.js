@@ -3,6 +3,7 @@ let available = true;
 let serviceTime = 0;
 let id;
 
+
 function service(){
     postMessage({"command": "get"});
 }
@@ -20,6 +21,3 @@ self.onmessage = function(event){
         setTimeout("service()", event.data.serviceTime);
     }
 };
-
-
-// service();

@@ -8,15 +8,25 @@ let queueOutput;
 let rejectedCount = 0;
 let saveArray = [];
 
+let lambda;
+let mean;
+let variance;
+
 
 function startClientGenerator(){
     console.log("Start client generator")
 
+    lambda = parseFloat(document.getElementById("lambda").value);
+    mean = parseFloat(document.getElementById("mean").value);
+    variance = parseFloat(document.getElementById("variance").value);
+
+
+    // console.log(lambda);
     clientGenerator = new Worker("./js/clientGeneratorWorker.js");
 
-    clientGenerator.postMessage({"lambda": parseInt(document.getElementById("lambda").value),
-                                 "mean": parseInt(document.getElementById("mean").value),
-                                 "variance": parseInt(document.getElementById("variance").value)
+    clientGenerator.postMessage({"lambda": lambda,
+                                 "mean": mean,
+                                 "variance": variance 
                                 });
 
     clientGenerator.onmessage = function(event){

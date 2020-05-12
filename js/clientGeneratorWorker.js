@@ -15,8 +15,8 @@ function normal_dist(){
     let u2 = Math.random();
 
     let z1 = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
-    
-    return Math.floor(z1 * Math.sqrt(variance) + mean);
+
+    return Math.floor(z1 * variance + mean);
 }
 
 function generateClient(){

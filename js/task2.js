@@ -30,9 +30,14 @@ function randomRaft(){
         }
     }
     arr = shuffle(arr);
+    
     // console.log(arr);
-    let s = arr.slice(0, 2/3*arr.length).join();
-    let t = arr.slice(2/3*arr.length).join();
+    let splt_point = Math.random();
+    let s = arr.slice(0, splt_point*arr.length);
+    let t = arr.slice(splt_point*arr.length);
+
+    s = s.slice(0,Math.random()*s.length).join();
+    t = t.slice(0, Math.random()*t.length).join();
     // console.log(s);
     // console.log(t);
     return [s, t];

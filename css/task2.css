@@ -1,0 +1,45 @@
+body{
+    background-image: url(https://media.gettyimages.com/photos/abstract-grunge-black-texture-background-picture-id1131428317?b=1&k=6&m=1131428317&s=612x612&w=0&h=QvI0aJHEkvbunc9XUfhuZ1hOClUxYgieVZUam_FhuTo=);
+    color: #fff;
+}
+
+#container{
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+h1{
+    font-size: 40px;
+}
+
+h3{
+    font-size: 30px
+}
+
+p{
+    font-size: 20px;
+}
+
+a{
+    font-size: 20px;
+    color: coral;
+    padding-right: 20px;
+}
+button{
+    padding: 10px 40px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+button:hover{
+    background-color: #777777;
+}
+
+a{
+    color: wheat;
+    text-decoration: none;
+}
+
+a:hover{
+    color: gray;
+}

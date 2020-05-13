@@ -25,41 +25,52 @@ function solution(N, S, T){
     //barrels
     if(!emptyS){
         S.forEach( (elem) => {
-            let row = elem.split('')[0] - 1;
-            let col = elem.split('')[1].charCodeAt() - 65;
+            let alphabet = elem.substring(elem.length-1, elem.length);
+            alphabet = alphabet.charCodeAt(0) - 64;
+            let number = elem.substring(0, elem.length-1);;
 
-            if(row < N/2 && col < N/2)
-                --top_left_free;
-            if(row < N/2 && col >= N/2)
-                --top_right_free;
-            if(row >= N/2 && col < N/2)
-                --bot_left_free;
-            if(row >= N/2 && col >= N/2)
-                --bot_right_free;
+            if(number <= N/2){
+                if(alphabet <= N/2){
+                    top_left_free -= 1;
+                }else{
+                    bot_left_free -= 1;
+                }
+            }else{
+                if(alphabet <= N/2){
+                    top_right_free -= 1;
+                }else{
+                    bot_right_free -= 1;
+                }
+            }
         });
     }
 
     //dwarfs
     if(!emptyT){
         T.forEach( (elem) => {
-            let row = elem.split('')[0] - 1;
-            let col = elem.split('')[1].charCodeAt() - 65;
+            let alphabet = elem.substring(elem.length-1, elem.length);
+            alphabet = alphabet.charCodeAt(0) - 64;
+            let number = elem.substring(0, elem.length-1);;
 
-            if(row < N/2 && col < N/2){
-                --top_left_free;
-                ++top_left_dwarfs;
+            if(number<=N/2){
+                if(alphabet<=N/2){
+                    --top_left_free;
+                    ++top_left_dwarfs;
+                }
+                else{
+                    --top_right_free;
+                    ++top_right_dwarfs;
+                }
             }
-            if(row < N/2 && col >= N/2){
-                --top_right_free;
-                ++top_right_dwarfs;
-            }
-            if(row >= N/2 && col < N/2){
-                --bot_left_free;
-                ++bot_left_dwarfs;
-            }
-            if(row >= N/2 && col >= N/2){
-                --bot_right_free;
-                ++bot_right_dwarfs;
+            else{
+                if(alphabet<=N/2){
+                    --bot_left_free;
+                    ++bot_left_dwarfs;
+                }
+                else{
+                    --bot_right_free;
+                    ++bot_right_dwarfs;
+                }
             }
         });
     }
@@ -80,7 +91,6 @@ function solution(N, S, T){
     add_top_right = diag2 - top_right_dwarfs;
     add_bot_left = diag2 - bot_left_dwarfs;
     add_bot_right = diag1 - bot_right_dwarfs;
-    console.log(top_left_free);
     return add_top_left + add_top_right + add_bot_left + add_bot_right;
 }
 
